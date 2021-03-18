@@ -3,6 +3,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: url_redirector
+    restart: always
     ports:
       - 80:80
     volumes:
