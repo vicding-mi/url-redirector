@@ -1,10 +1,21 @@
-version: '3'
+version: '3.5'
 services:
   nginx:
     image: nginx:latest
     container_name: url_redirector
     restart: always
-    ports:
-      - 80:80
+    labels:
+      - traefik.enable=true
+      - "traefik.http.routers.nginx.rule=(Host(`${HOSTNAME}`) || Host(`wiki.${HOSTNAME}`)"
+#      - "traefik.http.routers.nginx.rule=Host(`${HOSTNAME}`)"
+      - "traefik.http.services.nginx.loadbalancer.server.port=80"
+      - "traefik.http.routers.nginx.tls.certresolver=myresolver"
+      - "traefik.http.routers.nginx.entrypoints=https"
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true

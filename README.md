@@ -13,3 +13,8 @@ docker-compose up -d
 
 The -d option keeps the container running in the background. The restart policy is set to 
 `always`, it should be restart-proof. 
+
+### NOTES
+Redirection can as well be done through Traefik directly in the proxy configuration. However, in order to keep the 
+coupling as low as possible, keeping this simple container might for time being a good idea. This service can be 
+removed when the development enters a more stable state. 
