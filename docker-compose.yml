@@ -6,7 +6,7 @@ services:
     restart: always
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.nginx.rule=(Host(`${HOSTNAME}`) || Host(`wiki.${HOSTNAME}`)"
+      - "traefik.http.routers.nginx.rule=(Host(`${HOSTNAME}`) || Host(`wiki.${HOSTNAME}`))"
 #      - "traefik.http.routers.nginx.rule=Host(`${HOSTNAME}`)"
       - "traefik.http.services.nginx.loadbalancer.server.port=80"
       - "traefik.http.routers.nginx.tls.certresolver=myresolver"
